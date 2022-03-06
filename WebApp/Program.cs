@@ -1,7 +1,15 @@
+using RxApiClient;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddHttpClient<IWeatherForecastClient, WeatherForecastClient>("RxApi",
+    (provider, client) =>
+    {
+        client.BaseAddress = new Uri("http://rxapi");
+    });
 
 var app = builder.Build();
 

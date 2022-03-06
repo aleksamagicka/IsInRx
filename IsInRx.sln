@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RxApi", "RxApi\RxApi.csproj", "{10E4FDCE-9BEC-400D-9799-3A2DE6A8940C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RxApi", "RxApi\RxApi.csproj", "{10E4FDCE-9BEC-400D-9799-3A2DE6A8940C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp", "WebApp\WebApp.csproj", "{70D9EAC9-A2A5-4407-8606-643B181B85D1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApp", "WebApp\WebApp.csproj", "{70D9EAC9-A2A5-4407-8606-643B181B85D1}"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{7F866980-F56C-46AF-B8B7-C08847150B07}"
 EndProject

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using RxApiClient;
 using WebApp.Models;
 
 namespace WebApp.Controllers
@@ -7,23 +8,24 @@ namespace WebApp.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IWeatherForecastClient _weatherForecast;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IWeatherForecastClient weatherForecast)
         {
             _logger = logger;
+            _weatherForecast = weatherForecast;
         }
 
         public async Task<IActionResult> Index()
         {
-            using (var client = new System.Net.Http.HttpClient())
+            var novo = await _weatherForecast.GetAsync();
+            var st = "";
+            foreach (var x in novo)
             {
-                // Call *mywebapi*, and display its response in the page
-                var request = new HttpRequestMessage();
-                request.RequestUri = new Uri("http://rxapi/WeatherForecast");
-                var response = await client.SendAsync(request);
-
-                ViewBag.JSON = await response.Content.ReadAsStringAsync();
+                st += x.ToJson() + "<br><br><br>";
             }
+
+            ViewBag.JSON = st;
 
             return View();
         }
