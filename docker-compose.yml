@@ -1,0 +1,15 @@
+version: '3.4'
+
+services:
+  webapp:
+    image: ${DOCKER_REGISTRY-}webapp
+    build:
+      context: .
+      dockerfile: WebApp/Dockerfile
+
+  rxapi:
+    image: ${DOCKER_REGISTRY-}rxapi
+    build:
+      context: .
+      dockerfile: RxApi/Dockerfile
+
