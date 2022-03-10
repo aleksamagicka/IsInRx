@@ -16,3 +16,8 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.table td {
+    text-align: center;
+    vertical-align: middle
+}

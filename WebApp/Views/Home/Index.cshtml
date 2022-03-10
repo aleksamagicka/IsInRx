@@ -1,10 +1,16 @@
 ﻿@{
-    ViewData["Title"] = "Retrogrades";
+    ViewData["Title"] = "Retrograde planets";
 }
 
+@model DateViewModel
+
 <div class="text-center">
-    <h1 class="display-4">Retrogrades right now</h1>
-    
-    
-    @ViewBag.JSON
+    <h1 class="display-4">Retrogrades</h1>
+    <form asp-action="Index" asp-controller="Home">
+        <label asp-for="Date" ></label>
+        <input asp-for="Date" type="date" id="datePicker"/>
+        <input type="submit" />
+    </form>
+
+    @await Component.InvokeAsync("RxPeriods", ViewBag.PlanetPeriods)
 </div>

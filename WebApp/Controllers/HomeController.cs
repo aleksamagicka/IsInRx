@@ -8,31 +8,27 @@ namespace WebApp.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly IWeatherForecastClient _weatherForecast;
+        private readonly IRxClient _rxApiClient;
 
-        public HomeController(ILogger<HomeController> logger, IWeatherForecastClient weatherForecast)
+        public HomeController(ILogger<HomeController> logger, IRxClient rxApiClient)
         {
             _logger = logger;
-            _weatherForecast = weatherForecast;
+            _rxApiClient = rxApiClient;
         }
 
         public async Task<IActionResult> Index()
         {
-            var novo = await _weatherForecast.GetAsync();
-            var st = "";
-            foreach (var x in novo)
-            {
-                st += x.ToJson() + "<br><br><br>";
-            }
-
-            ViewBag.JSON = st;
-
-            return View();
+            return await Index(new DateViewModel { Date = DateTime.Now });
         }
 
-        public IActionResult Privacy()
+        [HttpPost]
+        public async Task<IActionResult> Index(DateViewModel dateModel)
         {
-            return View();
+            var planetPeriods = await _rxApiClient.GetRxPlanetsAsync(dateModel.Date);
+
+            ViewBag.PlanetPeriods = planetPeriods.ToList();
+
+            return View("Index", dateModel);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

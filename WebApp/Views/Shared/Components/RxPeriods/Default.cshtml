@@ -1,0 +1,114 @@
+﻿@model List<RxApiClient.PlanetPeriodsDTO>
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">Planet</th>
+            <th scope="col">Retrograde right now?</th>
+            <th scope="col">Current retrograde period</th>
+            <th scope="col">Starting position</th>
+            <th scope="col">Ending position</th>
+                
+            <th scope="col">Previous retrograde period</th>
+            <th scope="col">Next retrograde period</th>
+        </tr>
+        </thead>
+
+        <tbody>
+
+        @foreach (var period in Model)
+        {
+            <tr>
+                <td scope="row">@period.PlanetName (@Utilities.PlanetGlyph(period.PlanetName))</td>
+                <td> @* Retrograde right now *@
+                    @{
+                        if (period.Current == null)
+                        {
+                            <span>No</span>
+                        }
+                        else
+                        {
+                            <span><b>Yes</b></span>
+                        }
+                    }
+                </td>
+                <td> @* Current retrograde period *@
+                    @{
+                        if (period.Current == null)
+                        {
+                            <span>/</span>
+                        }
+                        else
+                        {
+                            <span>Start: @period.Current.StartPosition.Time.ToString("u")</span>
+                            <hr/>
+                            <span>End: @period.Current.EndPosition.Time.ToString("u")</span>
+                            <hr/>
+                            <span>Duration: @((period.Current.EndPosition.Time - period.Current.StartPosition.Time).Days) days</span>
+                        }
+                    }
+                </td>
+                <td> @* Starting position *@
+                    @{
+                        if (period.Current == null)
+                        {
+                            <span>/</span>
+                        }
+                        else
+                        {
+                            <span>@Utilities.PrettyLongitude(period.Current.StartPosition)</span>
+                        }
+                    }
+                </td>
+                <td> @* Ending position *@
+                    @{
+                        if (period.Current == null)
+                        {
+                            <span>/</span>
+                        }
+                        else
+                        {
+                            <span>@Utilities.PrettyLongitude(period.Current.EndPosition)</span>
+                        }
+                    }
+                </td>
+                <td> @* Previous retrograde period *@
+                    @{
+                        if (period.Previous == null)
+                        {
+                            <i>Maybe before 2010...</i>
+                        }
+                        else
+                        {
+                            <span>Start: @period.Previous.StartPosition.Time.ToString("u")</span>
+                            <hr/>
+                            <span>End: @period.Previous.EndPosition.Time.ToString("u")</span>
+                            <hr/>
+                            <span>Duration: @((period.Previous.EndPosition.Time - period.Previous.StartPosition.Time).Days) days</span>
+                        }
+                    }
+                </td>
+                <td> @* Next retrograde period *@
+                    @{
+                        if (period.After == null)
+                        {
+                            <i>Maybe after 2030...</i>
+                        }
+                        else
+                        {
+                            <span>Start: @period.After.StartPosition.Time.ToString("u")</span>
+                            <hr/>
+                            <span>End: @period.After.EndPosition.Time.ToString("u")</span>
+                            <hr/>
+                                
+                            <span>Duration: @((period.After.EndPosition.Time - period.After.StartPosition.Time).Days) days</span>
+                        }
+                    }
+                </td>
+            </tr>
+        }
+
+        </tbody>
+    </table>
+</div>

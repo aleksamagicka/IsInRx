@@ -25,4 +25,12 @@
 		<Exec WorkingDirectory="$(ProjectDir)" EnvironmentVariables="ASPNETCORE_ENVIRONMENT=Development" Command="$(NSwagExe_Net60) run rxapi.nswag /variables:Configuration=$(Configuration)" />
 	</Target>
 
+	<ItemGroup>
+	  <UpToDateCheckInput Remove="Views\Shared\Components\RxPeriods\Default.cshtml" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <_ContentIncludedByDefault Remove="Views\Shared\Components\RxPeriods\Default.cshtml" />
+	</ItemGroup>
+
 </Project>

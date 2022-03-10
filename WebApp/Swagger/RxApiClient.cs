@@ -20,24 +20,24 @@ namespace RxApiClient
     using System = global::System;
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial interface IWeatherForecastClient
+    public partial interface IRxClient
     {
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<System.Collections.Generic.ICollection<WeatherForecast>> GetAsync();
+        System.Threading.Tasks.Task<System.Collections.Generic.ICollection<PlanetPeriodsDTO>> GetRxPlanetsAsync(System.DateTime? time);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<System.Collections.Generic.ICollection<WeatherForecast>> GetAsync(System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<System.Collections.Generic.ICollection<PlanetPeriodsDTO>> GetRxPlanetsAsync(System.DateTime? time, System.Threading.CancellationToken cancellationToken);
 
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class WeatherForecastClient : IWeatherForecastClient
+    public partial class RxClient : IRxClient
     {
         private System.Net.Http.HttpClient _httpClient;
         private System.Lazy<Newtonsoft.Json.JsonSerializerSettings> _settings;
 
-        public WeatherForecastClient(System.Net.Http.HttpClient httpClient)
+        public RxClient(System.Net.Http.HttpClient httpClient)
         {
             _httpClient = httpClient;
             _settings = new System.Lazy<Newtonsoft.Json.JsonSerializerSettings>(CreateSerializerSettings);
@@ -59,17 +59,22 @@ namespace RxApiClient
         partial void ProcessResponse(System.Net.Http.HttpClient client, System.Net.Http.HttpResponseMessage response);
 
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<System.Collections.Generic.ICollection<WeatherForecast>> GetAsync()
+        public virtual System.Threading.Tasks.Task<System.Collections.Generic.ICollection<PlanetPeriodsDTO>> GetRxPlanetsAsync(System.DateTime? time)
         {
-            return GetAsync(System.Threading.CancellationToken.None);
+            return GetRxPlanetsAsync(time, System.Threading.CancellationToken.None);
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<System.Collections.Generic.ICollection<WeatherForecast>> GetAsync(System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task<System.Collections.Generic.ICollection<PlanetPeriodsDTO>> GetRxPlanetsAsync(System.DateTime? time, System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append("WeatherForecast");
+            urlBuilder_.Append("api/Rx?");
+            if (time != null)
+            {
+                urlBuilder_.Append(System.Uri.EscapeDataString("time") + "=").Append(System.Uri.EscapeDataString(time.Value.ToString("s", System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+            }
+            urlBuilder_.Length--;
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -103,7 +108,7 @@ namespace RxApiClient
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<System.Collections.Generic.ICollection<WeatherForecast>>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<System.Collections.Generic.ICollection<PlanetPeriodsDTO>>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
@@ -234,20 +239,20 @@ namespace RxApiClient
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class WeatherForecast
+    public partial class PlanetPeriodsDTO
     {
-        [Newtonsoft.Json.JsonProperty("date", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("planetName", Required = Newtonsoft.Json.Required.Always)]
         [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public System.DateTimeOffset Date { get; set; } = default!;
+        public string PlanetName { get; set; } = default!;
 
-        [Newtonsoft.Json.JsonProperty("temperatureC", Required = Newtonsoft.Json.Required.Always)]
-        public int TemperatureC { get; set; } = default!;
+        [Newtonsoft.Json.JsonProperty("current", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public RetrogradePeriod? Current { get; set; } = default!;
 
-        [Newtonsoft.Json.JsonProperty("temperatureF", Required = Newtonsoft.Json.Required.Always)]
-        public int TemperatureF { get; set; } = default!;
+        [Newtonsoft.Json.JsonProperty("previous", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public RetrogradePeriod? Previous { get; set; } = default!;
 
-        [Newtonsoft.Json.JsonProperty("summary", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string? Summary { get; set; } = default!;
+        [Newtonsoft.Json.JsonProperty("after", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public RetrogradePeriod? After { get; set; } = default!;
 
         public string ToJson()
         {
@@ -255,10 +260,99 @@ namespace RxApiClient
             return Newtonsoft.Json.JsonConvert.SerializeObject(this, new Newtonsoft.Json.JsonSerializerSettings());
 
         }
-        public static WeatherForecast FromJson(string data)
+        public static PlanetPeriodsDTO FromJson(string data)
         {
 
-            return Newtonsoft.Json.JsonConvert.DeserializeObject<WeatherForecast>(data, new Newtonsoft.Json.JsonSerializerSettings());
+            return Newtonsoft.Json.JsonConvert.DeserializeObject<PlanetPeriodsDTO>(data, new Newtonsoft.Json.JsonSerializerSettings());
+
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class RetrogradePeriod
+    {
+        [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.Always)]
+        public int Id { get; set; } = default!;
+
+        [Newtonsoft.Json.JsonProperty("name", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public string Name { get; set; } = default!;
+
+        [Newtonsoft.Json.JsonProperty("startPositionId", Required = Newtonsoft.Json.Required.Always)]
+        public int StartPositionId { get; set; } = default!;
+
+        [Newtonsoft.Json.JsonProperty("endPositionId", Required = Newtonsoft.Json.Required.Always)]
+        public int EndPositionId { get; set; } = default!;
+
+        [Newtonsoft.Json.JsonProperty("endPosition", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required]
+        public PlanetPosition EndPosition { get; set; } = new PlanetPosition();
+
+        [Newtonsoft.Json.JsonProperty("startPosition", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required]
+        public PlanetPosition StartPosition { get; set; } = new PlanetPosition();
+
+        public string ToJson()
+        {
+
+            return Newtonsoft.Json.JsonConvert.SerializeObject(this, new Newtonsoft.Json.JsonSerializerSettings());
+
+        }
+        public static RetrogradePeriod FromJson(string data)
+        {
+
+            return Newtonsoft.Json.JsonConvert.DeserializeObject<RetrogradePeriod>(data, new Newtonsoft.Json.JsonSerializerSettings());
+
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class PlanetPosition
+    {
+        [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.Always)]
+        public int Id { get; set; } = default!;
+
+        [Newtonsoft.Json.JsonProperty("name", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public string Name { get; set; } = default!;
+
+        [Newtonsoft.Json.JsonProperty("longitude", Required = Newtonsoft.Json.Required.Always)]
+        public decimal Longitude { get; set; } = default!;
+
+        [Newtonsoft.Json.JsonProperty("latitude", Required = Newtonsoft.Json.Required.Always)]
+        public decimal Latitude { get; set; } = default!;
+
+        [Newtonsoft.Json.JsonProperty("time", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public System.DateTime Time { get; set; } = default!;
+
+        [Newtonsoft.Json.JsonProperty("degrees", Required = Newtonsoft.Json.Required.Always)]
+        public decimal Degrees { get; set; } = default!;
+
+        [Newtonsoft.Json.JsonProperty("minutes", Required = Newtonsoft.Json.Required.Always)]
+        public decimal Minutes { get; set; } = default!;
+
+        [Newtonsoft.Json.JsonProperty("seconds", Required = Newtonsoft.Json.Required.Always)]
+        public decimal Seconds { get; set; } = default!;
+
+        [Newtonsoft.Json.JsonProperty("sign", Required = Newtonsoft.Json.Required.Always)]
+        public int Sign { get; set; } = default!;
+
+        [Newtonsoft.Json.JsonProperty("retrograde", Required = Newtonsoft.Json.Required.Always)]
+        public bool Retrograde { get; set; } = default!;
+
+        public string ToJson()
+        {
+
+            return Newtonsoft.Json.JsonConvert.SerializeObject(this, new Newtonsoft.Json.JsonSerializerSettings());
+
+        }
+        public static PlanetPosition FromJson(string data)
+        {
+
+            return Newtonsoft.Json.JsonConvert.DeserializeObject<PlanetPosition>(data, new Newtonsoft.Json.JsonSerializerSettings());
 
         }
 
