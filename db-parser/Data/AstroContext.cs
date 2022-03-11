@@ -21,7 +21,7 @@ namespace RxDBParser.Data
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseNpgsql("Host=localhost;Database=astro;Username=postgres;Password=aleksa");  // TODO: Currently hardcoded
+                optionsBuilder.UseNpgsql("Host=localhost;Database=astro;Username=postgres;Password=aleksa");
             }
         }
 
