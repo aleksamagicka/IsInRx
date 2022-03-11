@@ -1,11 +1,11 @@
-﻿@model List<RxApiClient.PlanetPeriodsDTO>
+﻿@model DateViewModel
 
 <div class="table-responsive">
     <table class="table table-striped">
         <thead>
         <tr>
             <th scope="col">Planet</th>
-            <th scope="col">Retrograde right now?</th>
+            <th scope="col">Retrograde?</th>
             <th scope="col">Current retrograde period</th>
             <th scope="col">Starting position</th>
             <th scope="col">Ending position</th>
@@ -17,11 +17,11 @@
 
         <tbody>
 
-        @foreach (var period in Model)
+        @foreach (var period in Model.PlanetPeriods)
         {
             <tr>
                 <td scope="row">@period.PlanetName (@Utilities.PlanetGlyph(period.PlanetName))</td>
-                <td> @* Retrograde right now *@
+                <td> @* Retrograde? *@
                     @{
                         if (period.Current == null)
                         {
@@ -45,7 +45,7 @@
                             <hr/>
                             <span>End: @period.Current.EndPosition.Time.ToString("u")</span>
                             <hr/>
-                            <span>Duration: @((period.Current.EndPosition.Time - period.Current.StartPosition.Time).Days) days</span>
+                            <span>Duration: @((period.Current.EndPosition.Time - period.Current.StartPosition.Time).Days) days, ends in: ~@((period.Current.EndPosition.Time - Model.Date).Days) days</span>
                         }
                     }
                 </td>

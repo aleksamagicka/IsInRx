@@ -25,7 +25,7 @@ namespace WebApp
 
         public static string PrettyLongitude(PlanetPosition position)
         {
-            return $"{position.Degrees % 30}° {ZodiacSymbols[position.Sign]} {position.Minutes}\" {Math.Truncate(position.Seconds)}\'";
+            return $"{position.Degrees % 30}° {ZodiacSymbols[position.Sign]} ({position.Minutes}\' {Math.Truncate(position.Seconds)}\")";
         }
     }
 }

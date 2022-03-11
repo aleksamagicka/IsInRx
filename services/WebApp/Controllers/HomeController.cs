@@ -7,12 +7,10 @@ namespace WebApp.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
         private readonly IRxClient _rxApiClient;
 
-        public HomeController(ILogger<HomeController> logger, IRxClient rxApiClient)
+        public HomeController(IRxClient rxApiClient)
         {
-            _logger = logger;
             _rxApiClient = rxApiClient;
         }
 
@@ -26,7 +24,7 @@ namespace WebApp.Controllers
         {
             var planetPeriods = await _rxApiClient.GetRxPlanetsAsync(dateModel.Date);
 
-            ViewBag.PlanetPeriods = planetPeriods.ToList();
+            dateModel.PlanetPeriods = planetPeriods.ToList();
 
             return View("Index", dateModel);
         }
