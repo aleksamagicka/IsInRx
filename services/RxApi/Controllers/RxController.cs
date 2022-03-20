@@ -42,7 +42,6 @@ namespace RxApi.Controllers
 
                 var nextTime = currentRxPeriod?.EndPosition.Time ?? time;
 
-                // TODO: Ne radi
                 // Try to find the next retrograde period
                 var nextRxPeriod = await _context.RetrogradePeriods
                     .Where(period => period.Name == planet && period.StartPosition.Time > nextTime)
@@ -53,8 +52,7 @@ namespace RxApi.Controllers
                     periodsDTO.After = nextRxPeriod;
                 }
 
-                // TODO: Ne radi
-                // Try to find the past retrograde period
+                // Try to find the previous retrograde period
                 var pastRxPeriod = await _context.RetrogradePeriods
                     .Where(period => period.Name == planet && period.EndPosition.Time < time)
                     .OrderByDescending(period => period.EndPosition.Time).FirstOrDefaultAsync();
