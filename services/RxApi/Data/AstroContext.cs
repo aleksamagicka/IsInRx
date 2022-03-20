@@ -20,10 +20,10 @@ namespace RxApi
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            if (!optionsBuilder.IsConfigured)
-            {
-                optionsBuilder.UseNpgsql("Host=localhost;Database=astro;Username=postgres;Password=aleksa");
-            }
+            //if (!optionsBuilder.IsConfigured)
+            //{
+            //    optionsBuilder.UseNpgsql("Host=localhost;Database=astro;Username=postgres;Password=aleksa");
+            //}
 
             optionsBuilder.UseLazyLoadingProxies();
         }

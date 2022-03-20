@@ -10,6 +10,6 @@ services:
   rxapi:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
+      - DB_CONNECTION_STRING=Host=host.docker.internal;Database=astro;Username=postgres;Password=aleksa
     ports:
       - "80"
-
