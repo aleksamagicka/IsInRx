@@ -1,5 +1,6 @@
 namespace: isinrx
 resources:
+  - namespace.yaml
+  - secret-db-cred.yaml
   - rxapi.yaml
   - webapp.yaml
-  - namespace.yaml

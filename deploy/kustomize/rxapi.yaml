@@ -31,4 +31,7 @@ spec:
         - containerPort: 80
         env:
         - name: DB_CONNECTION_STRING
-          value: Host=host.docker.internal;Database=astro;Username=postgres;Password=aleksa
+          valueFrom:
+            secretKeyRef:
+              name: db-cred
+              key: db-credentials
