@@ -20,7 +20,7 @@
         @foreach (var period in Model.PlanetPeriods)
         {
             <tr>
-                <td scope="row">@period.PlanetName (@Utilities.PlanetGlyph(period.PlanetName))</td>
+                <td scope="row">@period.PlanetName (<b>@Utilities.PlanetGlyph(period.PlanetName)</b>)</td>
                 <td> @* Retrograde? *@
                     @{
                         if (period.Current == null)
@@ -41,9 +41,9 @@
                         }
                         else
                         {
-                            <span>Start: @period.Current.StartPosition.Time.ToString("R")</span>
+                            <span>Start: @period.Current.StartPosition.Time.ToString("yyyy-MM-dd hh:mm")</span>
                             <hr/>
-                            <span>End: @period.Current.EndPosition.Time.ToString("R")</span>
+                            <span>End: @period.Current.EndPosition.Time.ToString("yyyy-MM-dd hh:mm")</span>
                             <hr/>
                             <span>Duration: @((period.Current.EndPosition.Time - period.Current.StartPosition.Time).Days) days, ends in: ~@((period.Current.EndPosition.Time - Model.Date).Days) days</span>
                         }
@@ -61,7 +61,7 @@
                             @if (period.ExitsShadow != null)
                             {
                                 <hr/>
-                                <span>Exits shadow at: <br/>@period.ExitsShadow?.Time.ToString("R")</span>
+                                <span>Exits shadow at: <br/>@period.ExitsShadow?.Time.ToString("yyyy-MM-dd hh:mm")</span>
                             }
                         }
                     }
@@ -86,9 +86,9 @@
                         }
                         else
                         {
-                            <span>Start: @period.Previous.StartPosition.Time.ToString("R")</span>
+                            <span>Start: @period.Previous.StartPosition.Time.ToString("yyyy-MM-dd hh:mm")</span>
                             <hr/>
-                            <span>End: @period.Previous.EndPosition.Time.ToString("R")</span>
+                            <span>End: @period.Previous.EndPosition.Time.ToString("yyyy-MM-dd hh:mm")</span>
                             <hr/>
                             <span>Duration: @((period.Previous.EndPosition.Time - period.Previous.StartPosition.Time).Days) days</span>
                         }
@@ -102,9 +102,9 @@
                         }
                         else
                         {
-                            <span>Start: @period.After.StartPosition.Time.ToString("R")</span>
+                            <span>Start: @period.After.StartPosition.Time.ToString("yyyy-MM-dd hh:mm")</span>
                             <hr/>
-                            <span>End: @period.After.EndPosition.Time.ToString("R")</span>
+                            <span>End: @period.After.EndPosition.Time.ToString("yyyy-MM-dd hh:mm")</span>
                             <hr/>
 
                             <span>Duration: @((period.After.EndPosition.Time - period.After.StartPosition.Time).Days) days</span>
@@ -116,7 +116,7 @@
         </tbody>
     </table>
     
-    Accuracy ±5m. Ranges from 2010 to 2030.
+    Accuracy ±5m, GMT +0. Ranges from 2010 to 2030.
     <br/>
     <b>Disclaimer</b>: Data on this website is provided AS IS, with no warranty. Informational use only.
 </div>
