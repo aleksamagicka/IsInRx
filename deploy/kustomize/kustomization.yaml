@@ -1,0 +1,4 @@
+namespace: isinrx
+resources:
+  - rxapi.yaml
+  - webapp.yaml
