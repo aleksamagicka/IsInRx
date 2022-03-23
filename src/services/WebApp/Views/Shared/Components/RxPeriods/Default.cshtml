@@ -20,7 +20,7 @@
         @foreach (var period in Model.PlanetPeriods)
         {
             <tr>
-                <td scope="row">@period.PlanetName (<b>@Utilities.PlanetGlyph(period.PlanetName)</b>)</td>
+                <td scope="row">@period.PlanetName (@Utilities.PlanetGlyph(period.PlanetName))</td>
                 <td>
                     @* Retrograde? *@
                     @{
