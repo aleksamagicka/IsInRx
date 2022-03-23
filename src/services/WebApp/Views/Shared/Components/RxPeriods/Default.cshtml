@@ -9,7 +9,7 @@
             <th scope="col">Current retrograde period</th>
             <th scope="col">Starting position</th>
             <th scope="col">Ending position</th>
-                
+
             <th scope="col">Previous retrograde period</th>
             <th scope="col">Next retrograde period</th>
         </tr>
@@ -21,7 +21,8 @@
         {
             <tr>
                 <td scope="row">@period.PlanetName (<b>@Utilities.PlanetGlyph(period.PlanetName)</b>)</td>
-                <td> @* Retrograde? *@
+                <td>
+                    @* Retrograde? *@
                     @{
                         if (period.Current == null)
                         {
@@ -29,11 +30,14 @@
                         }
                         else
                         {
-                            <span><b>Yes</b></span>
+                            <span>
+                                <b>Yes</b>
+                            </span>
                         }
                     }
                 </td>
-                <td> @* Current retrograde period *@
+                <td>
+                    @* Current retrograde period *@
                     @{
                         if (period.Current == null)
                         {
@@ -49,7 +53,8 @@
                         }
                     }
                 </td>
-                <td> @* Starting position *@
+                <td>
+                    @* Starting position *@
                     @{
                         if (period.Current == null)
                         {
@@ -66,7 +71,8 @@
                         }
                     }
                 </td>
-                <td> @* Ending position *@
+                <td>
+                    @* Ending position *@
                     @{
                         if (period.Current == null)
                         {
@@ -78,7 +84,8 @@
                         }
                     }
                 </td>
-                <td> @* Previous retrograde period *@
+                <td>
+                    @* Previous retrograde period *@
                     @{
                         if (period.Previous == null)
                         {
@@ -94,7 +101,8 @@
                         }
                     }
                 </td>
-                <td> @* Next retrograde period *@
+                <td>
+                    @* Next retrograde period *@
                     @{
                         if (period.After == null)
                         {
@@ -115,7 +123,7 @@
         }
         </tbody>
     </table>
-    
+
     Accuracy ±5m, GMT +0. Ranges from 2010 to 2030.
     <br/>
     <b>Disclaimer</b>: Data on this website is provided AS IS, with no warranty. Informational use only.

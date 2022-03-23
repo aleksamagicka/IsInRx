@@ -1,9 +1,10 @@
-﻿namespace WebApp.Models
-{
-    public class DateViewModel
-    {
-        public DateTime Date { get; set; }
+﻿using RxApiClient;
 
-        public List<RxApiClient.PlanetPeriodsDTO> PlanetPeriods { get; set; }
-    }
+namespace WebApp.Models;
+
+public class DateViewModel
+{
+    public DateTime Date { get; set; }
+
+    public List<PlanetPeriodsDTO> PlanetPeriods { get; set; }
 }

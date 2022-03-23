@@ -1,12 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace WebApp.Models.ViewModels
+namespace WebApp.Models.ViewModels;
+
+public class RxPeriodsViewComponent : ViewComponent
 {
-    public class RxPeriodsViewComponent : ViewComponent
+    public async Task<IViewComponentResult> InvokeAsync(DateViewModel dateViewModel)
     {
-        public async Task<IViewComponentResult> InvokeAsync(DateViewModel dateViewModel)
-        {
-            return View(dateViewModel);
-        }
+        return View(dateViewModel);
     }
 }

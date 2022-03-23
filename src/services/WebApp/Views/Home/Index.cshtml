@@ -7,9 +7,9 @@
 <div class="text-center">
     <h1 class="display-4">Retrogrades</h1>
     <form asp-action="Index" asp-controller="Home">
-        <label asp-for="Date" ></label>
+        <label asp-for="Date"></label>
         <input asp-for="Date" type="date" id="datePicker"/>
-        <input type="submit" />
+        <input type="submit"/>
     </form>
 
     @await Component.InvokeAsync("RxPeriods", Model)

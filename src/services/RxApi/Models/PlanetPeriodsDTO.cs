@@ -1,12 +1,11 @@
-﻿namespace RxApi.Models
-{
-    public class PlanetPeriodsDTO
-    {
-        public string PlanetName { get; set; }
-        public RetrogradePeriod? Current { get; set; }
-        public RetrogradePeriod? Previous { get; set; }
-        public RetrogradePeriod? After { get; set; }
+﻿namespace RxApi.Models;
 
-        public PlanetPosition? ExitsShadow { get; set; }
-    }
+public class PlanetPeriodsDTO
+{
+    public string PlanetName { get; set; }
+    public RetrogradePeriod? Current { get; set; }
+    public RetrogradePeriod? Previous { get; set; }
+    public RetrogradePeriod? After { get; set; }
+
+    public PlanetPosition? ExitsShadow { get; set; }
 }
