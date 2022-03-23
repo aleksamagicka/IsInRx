@@ -10,7 +10,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerDocument();
 
 builder.Services.AddDbContext<AstroContext>(options =>
-    options.UseNpgsql(Environment.GetEnvironmentVariable("DB_CONNECTION_STRING")!)); // builder.Configuration.GetConnectionString()
+    options.UseNpgsql(
+        Environment.GetEnvironmentVariable("DB_CONNECTION_STRING")!)); // builder.Configuration.GetConnectionString()
 
 var app = builder.Build();
 
