@@ -37,6 +37,16 @@ namespace RxApi.Controllers
                 {
                     // The planet is retrograde at this point in time
                     periodsDTO.Current = currentRxPeriod;
+
+                    // Try to find the time when it exits its shadow (when it surpasses the original position where it started going backwards)
+                    var nextShadowSurpass = await _context.PlanetPositions
+                        .Where(position => position.Name == planet && position.Longitude > currentRxPeriod.StartPosition.Longitude)
+                        .OrderBy(position => position.Longitude).FirstOrDefaultAsync();
+
+                    if (nextShadowSurpass != null)
+                    {
+                        periodsDTO.ExitsShadow = nextShadowSurpass;
+                    }
                 }
 
                 var nextTime = currentRxPeriod?.EndPosition.Time ?? time;
@@ -61,6 +71,7 @@ namespace RxApi.Controllers
                     periodsDTO.Previous = pastRxPeriod;
                 }
 
+                // Done, add to list
                 planetDTOs.Add(periodsDTO);
             }
 

@@ -6,5 +6,7 @@
         public RetrogradePeriod? Current { get; set; }
         public RetrogradePeriod? Previous { get; set; }
         public RetrogradePeriod? After { get; set; }
+
+        public PlanetPosition? ExitsShadow { get; set; }
     }
 }

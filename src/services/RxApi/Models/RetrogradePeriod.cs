@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using RxApi.Models;
+﻿using RxApi.Models;
 
 namespace RxApi
 {

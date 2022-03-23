@@ -1,7 +1,7 @@
 ﻿@model DateViewModel
 
 <div class="table-responsive">
-    <table class="table table-striped">
+    <table class="table table-striped text-center">
         <thead>
         <tr>
             <th scope="col">Planet</th>
@@ -41,9 +41,9 @@
                         }
                         else
                         {
-                            <span>Start: @period.Current.StartPosition.Time.ToString("u")</span>
+                            <span>Start: @period.Current.StartPosition.Time.ToString("R")</span>
                             <hr/>
-                            <span>End: @period.Current.EndPosition.Time.ToString("u")</span>
+                            <span>End: @period.Current.EndPosition.Time.ToString("R")</span>
                             <hr/>
                             <span>Duration: @((period.Current.EndPosition.Time - period.Current.StartPosition.Time).Days) days, ends in: ~@((period.Current.EndPosition.Time - Model.Date).Days) days</span>
                         }
@@ -58,6 +58,11 @@
                         else
                         {
                             <span>@Utilities.PrettyLongitude(period.Current.StartPosition)</span>
+                            @if (period.ExitsShadow != null)
+                            {
+                                <hr/>
+                                <span>Exits shadow at: <br/>@period.ExitsShadow?.Time.ToString("R")</span>
+                            }
                         }
                     }
                 </td>
@@ -81,9 +86,9 @@
                         }
                         else
                         {
-                            <span>Start: @period.Previous.StartPosition.Time.ToString("u")</span>
+                            <span>Start: @period.Previous.StartPosition.Time.ToString("R")</span>
                             <hr/>
-                            <span>End: @period.Previous.EndPosition.Time.ToString("u")</span>
+                            <span>End: @period.Previous.EndPosition.Time.ToString("R")</span>
                             <hr/>
                             <span>Duration: @((period.Previous.EndPosition.Time - period.Previous.StartPosition.Time).Days) days</span>
                         }
@@ -97,9 +102,9 @@
                         }
                         else
                         {
-                            <span>Start: @period.After.StartPosition.Time.ToString("u")</span>
+                            <span>Start: @period.After.StartPosition.Time.ToString("R")</span>
                             <hr/>
-                            <span>End: @period.After.EndPosition.Time.ToString("u")</span>
+                            <span>End: @period.After.EndPosition.Time.ToString("R")</span>
                             <hr/>
 
                             <span>Duration: @((period.After.EndPosition.Time - period.After.StartPosition.Time).Days) days</span>
@@ -111,5 +116,7 @@
         </tbody>
     </table>
     
-    <b>Disclaimer</b>: Data on this website is provided AS IS, with no warranty. Informational use only. Accuracy ±5m. Ranges from 2010 to 2030.
+    Accuracy ±5m. Ranges from 2010 to 2030.
+    <br/>
+    <b>Disclaimer</b>: Data on this website is provided AS IS, with no warranty. Informational use only.
 </div>

@@ -9,7 +9,7 @@ namespace WebApp
 
         public static string PlanetGlyph(string planet)
         {
-            return planet switch
+            return planet.ToLower() switch
             {
                 "mercury" => "☿",
                 "venus" => "♀",

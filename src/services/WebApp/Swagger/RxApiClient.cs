@@ -254,6 +254,9 @@ namespace RxApiClient
         [Newtonsoft.Json.JsonProperty("after", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public RetrogradePeriod? After { get; set; } = default!;
 
+        [Newtonsoft.Json.JsonProperty("exitsShadow", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public PlanetPosition? ExitsShadow { get; set; } = default!;
+
         public string ToJson()
         {
 
