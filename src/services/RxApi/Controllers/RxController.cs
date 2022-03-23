@@ -1,8 +1,7 @@
-﻿using System.Linq;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using RxApi.Models;
+using static System.Char;
 
 namespace RxApi.Controllers
 {
@@ -27,7 +26,7 @@ namespace RxApi.Controllers
             {
                 var periodsDTO = new PlanetPeriodsDTO()
                 {
-                    PlanetName = planet
+                    PlanetName = ToUpper(planet[0]) + planet.Substring(1)
                 };
 
                  // Try to find current retrograde period
