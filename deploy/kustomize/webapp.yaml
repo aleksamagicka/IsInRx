@@ -6,7 +6,7 @@ metadata:
     kubernetes.io/ingress.class: nginx
 spec:
   rules:
-  - host: "t1.isinrx.com"
+  - host: "isinrx.com"
     http:
       paths:
       - pathType: Prefix
@@ -45,6 +45,6 @@ spec:
     spec:
       containers:
       - name: isinrx-webapp
-        image: aleksamagicka/webapp
+        image: aleksamagicka/webapp:latest
         ports:
         - containerPort: 80
