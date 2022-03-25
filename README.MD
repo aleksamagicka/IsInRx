@@ -1,6 +1,6 @@
 # IsInRx
 
-A web app that tells you what planets are in retrograde motion at a given date. It also tells you where it is, how long it will last and when it will stop. Useful for looking up retrograde Mercury in advance.
+A web app that tells you what planets are in retrograde motion at a given date. It also tells you where they are, how long their RX period will last and when it will stop. Useful for looking up retrograde Mercury in advance.
 
 You can deploy this on Kubernetes by running:
 
